@@ -30,7 +30,7 @@ Service::~Service(){
 
 void Service::doSomething(std::weak_ptr<int> ref){
     probeMarker.push_back(11);
-    if (!(ref.expired())){
+    if (auto sync = ref.lock()){
         lock_guard<mutex> lock(mutex_);
         *resource_ = 123;
         probeMarker.push_back(12);
