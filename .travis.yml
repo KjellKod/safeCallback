@@ -1,0 +1,12 @@
+language: cpp
+compiler: 
+    - clang
+    - gcc
+before_install:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq cmake
+script:
+    - mkdir bld
+    - cd bld/; cmake ../
+    - make
+    - ut
