@@ -36,9 +36,10 @@ matrix:
             - libgtest-dev
             - google-mock
       env: COMPILER=clang++-3.8
-
 script:
-  - export CXX=$COMPILER; mkdir bld
+  - cd /tmp/.build; cmake -D BUILD_TYPE=Release /usr/src/gtest/; make
+  - sudo cp libg* /usr/lib 
+  - cd -; export CXX=$COMPILER; mkdir bld
   - cd bld/; cmake ../
   - make
   - ./ut
