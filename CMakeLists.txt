@@ -4,12 +4,12 @@ project(callbackTest)
 set(CMAKE_CXX_STANDARD 14)
 
 #google test and google mock
-set(gtestDir ~/googletest/ CACHE PATH 
-    "google test repository top path (containing googltest/googlemock), shall be checked out from github: https://github.com/google/googletest/")
+set(gtestTopDir /usr/ CACHE PATH
+    "google test and google mock install directory prefix")
 
-add_library(gtest STATIC ${gtestDir}/googletest/src/gtest-all.cc ${gtestDir}/googlemock/src/gmock-all.cc) 
-include_directories(SYSTEM PUBLIC ${gtestDir}/googletest/include ${gtestDir}/googlemock/include)
-include_directories(PUBLIC ${gtestDir}/googletest ${gtestDir}/googlemock)
+add_library(gtest STATIC ${gtestTopDir}/src/gtest/src/gtest-all.cc ${gtestTopDir}/src/gmock/src/gmock-all.cc) 
+include_directories(SYSTEM PUBLIC ${gtestTopDir}/include/gtest/include ${gtestTopDir}/include/gmock/include)
+target_include_directories(gtest PUBLIC ${gtestTopDir}/src/gtest ${gtestTopDir}/src/gmock)
 
 #Test targets
 set(testSrcs
